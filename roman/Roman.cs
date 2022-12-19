@@ -37,17 +37,18 @@ public class Roman
     public Roman(string roman)
     {
         _value = 0;
-        int index = _trans.Length - 1;
-        while(roman.Length > 0) {
-            if(roman.StartsWith(_trans[index].roman)) { roman = roman.Substring(_trans[index].roman.Length); _value += _trans[index].arabic; } else { index--; }
+        for(int index = _trans.Length - 1; roman.Length > 0; index--) {
+            while(roman.StartsWith(_trans[index].roman)) {
+                roman = roman.Substring(_trans[index].roman.Length); _value += _trans[index].arabic;
+            }
         }
     }
     public string To_Roman() {
         string result = "";
-        int index = _trans.Length - 1;
-        int value = _value;
-        while(value > 0) {
-            if(value < _trans[index].arabic) { index--; } else { result += _trans[index].roman; value -= _trans[index].arabic; }
+        for(int index = _trans.Length -1, value = _value; value > 0; index--) {
+            while(value >= _trans[index].arabic) {
+                result += _trans[index].roman; value -= _trans[index].arabic;
+            }
         }
         return result;
     }
