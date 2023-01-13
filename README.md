@@ -30,5 +30,5 @@ If you clone the repo, you'll see this.
 
 ```
 dotnet build
-dotnet test
+dotnet test --logger "console;verbosity=normal"
 ```
